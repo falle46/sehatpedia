@@ -217,15 +217,111 @@
     },
     {
         "id": 19,
-        "title": "",
-        "category": "",
-        "excerpt": "",
-        "content": "",
-        "author": "Dr. Kulit Cantik",
-        "date": "2024-12-30",
-        "source": "Klinik Dermatologi Modern",
-        "image": "",
-        "originalUrl": ""
+        "title": "Mengupas Manfaat Kopi untuk Prediabetes dan Diabetes",
+        "category": "diabetes",
+        "excerpt": "Kopi merupakan minuman yang banyak dikonsumsi. Sering timbul pertanyaan apakah kopi aman jika diminum oleh pasien prediabetes atau diabetes? Banyak studi menyebutkan kopi hitam memang bermanfaat bagi pasien diabetes. Mari simak penjelasannya.",
+        "content": "Kopi hitam tanpa gula memiliki potensi manfaat bagi penderita prediabetes dan diabetes. Kandungan kafein, polifenol, dan magnesium di dalamnya dapat membantu menurunkan gula darah dengan berbagai mekanisme, seperti menghambat reseptor adenosin, menurunkan produksi glukosa di hati, meningkatkan sensitivitas insulin, dan mengurangi penyerapan karbohidrat. Beberapa studi menunjukkan bahwa konsumsi rutin kopi dapat membantu mencegah perkembangan diabetes tipe 2. Namun, efek ini tergantung pada dosis (idealnya 3–4 cangkir per hari), durasi konsumsi (habitual), dan toleransi individu terhadap efek samping seperti gangguan tidur atau jantung berdebar. Meski ada temuan awal mengenai potensi kafein melawan COVID-19 melalui penghambatan enzim virus, hal ini masih perlu penelitian lebih lanjut. Konsultasi dokter diperlukan terutama bagi penderita diabetes dengan komplikasi atau kondisi khusus."
+        ,"author": "dr. Wardhana, Sp.PD, K-EMD, FINASIM",
+        "date": "2025-05-14",
+        "source": "HalloSehat",
+        "image": "public/diabetes1.png",
+        "originalUrl": "https://hellosehat.com/diabetes/manfaat-kopi-diabetes/"
+    },
+    {
+        "id": 20,
+        "title": "4 Tipe Diabetes dan Perbedaannya yang Perlu Diketahui",
+        "category": "diabetes",
+        "excerpt": "Diabetes atau dikenal dengan diabetes melitus adalah salah satu penyakit kronis paling umum di Indonesia. Terdapat beberapa jenis diabetes yang mungkin terjadi. Beda jenisnya, beda pula penanganannya. Apa saja tipe diabetes yang ada?",
+        "content": "Diabetes melitus terbagi menjadi empat tipe utama, masing-masing dengan penyebab dan karakteristik yang berbeda:\n\n1. **Diabetes Tipe 1**: Merupakan penyakit autoimun di mana sistem kekebalan menyerang sel penghasil insulin di pankreas. Umumnya muncul pada anak-anak, remaja, atau dewasa muda. Pasien memerlukan terapi insulin seumur hidup.\n\n2. **Diabetes Tipe 2**: Tipe paling umum (sekitar 95% kasus). Disebabkan oleh resistensi insulin akibat gaya hidup tidak sehat. Bisa dikendalikan dengan pola hidup sehat dan pengobatan.\n\n3. **Diabetes Tipe 3**: Merujuk pada kaitan antara diabetes dan penyakit Alzheimer. Diperkirakan disebabkan oleh gangguan suplai insulin ke otak, yang berdampak pada fungsi dan regenerasi sel otak.\n\n4. **Diabetes Gestasional**: Terjadi selama kehamilan akibat hormon plasenta yang mengganggu kerja insulin. Umumnya sembuh setelah melahirkan, tetapi perlu penanganan untuk mencegah komplikasi.\n\nMasing-masing jenis diabetes bisa berbahaya jika tidak dikendalikan. Pengelolaan gaya hidup dan kepatuhan pada pengobatan sangat menentukan keberhasilan dalam mengelola penyakit ini."
+        ,"author": " dr. Mikhael Yosia, BMedSci, PGCert, DTM&H.",
+        "date": "2025-03-23",
+        "source": "HalloSehat",
+        "image": "public/diabetes2.png",
+        "originalUrl": "https://hellosehat.com/diabetes/tipe-diabetes/"
+    },
+        {
+        "id": 21,
+        "title": "Mengenal Perbedaan Diabetes Tipe 1 dan Tipe 2",
+        "category": "diabetes",
+        "excerpt": "Diabetes dikenal juga oleh masyarakat sebagai “penyakit gula” atau “kencing manis”. Ada dua jenis diabetes, yaitu diabetes tipe 1 dan tipe 2. Meski memiliki gejala yang sama, ada perbedaan di antara keduanya, baik dari penyebab maupun pengobatannya.",
+        "content": "Diabetes tipe 1 dan tipe 2 memiliki gejala yang mirip, tetapi perbedaan utamanya terletak pada penyebab dan cara penanganannya.\n\n1. **Penyebab**\n   - **Tipe 1**: Gangguan autoimun yang menyerang sel penghasil insulin. Dipicu oleh faktor genetik dan infeksi virus tertentu.\n   - **Tipe 2**: Sel tubuh kurang sensitif terhadap insulin. Dipicu oleh gaya hidup tidak sehat, obesitas, dan usia.\n\n2. **Gejala**\n   - Umum pada kedua tipe: sering haus, sering buang air kecil, mudah lapar, berat badan turun, cepat lelah, penglihatan kabur, luka sulit sembuh.\n   - **Tipe 1**: Gejala muncul tiba-tiba dan cepat memburuk.\n   - **Tipe 2**: Gejala muncul perlahan dan sering tak disadari hingga muncul komplikasi.\n\n3. **Diagnosis**\n   - Pemeriksaan gula darah (GDS, GDP, HbA1c).\n   - Tes antibodi untuk membedakan tipe 1 dan tipe 2.\n\n4. **Pengobatan**\n   - **Tipe 1**: Wajib insulin suntik seumur hidup.\n   - **Tipe 2**: Awalnya cukup dengan perubahan gaya hidup, obat diberikan jika perlu.\n\n5. **Usia Penderita**\n   - **Tipe 1**: Umumnya pada anak-anak dan remaja.\n   - **Tipe 2**: Umumnya pada usia 40 tahun ke atas, tapi bisa juga dialami usia muda.\n\nPenting untuk memeriksakan diri jika memiliki gejala atau risiko diabetes agar bisa ditangani lebih awal dan mencegah komplikasi serius."
+        ,"author": "dr. Irene Cindy Sunur",
+        "date": "2022-12-21",
+        "source": "Alodokter",
+        "image": "public/diabetes3.png",
+        "originalUrl": "https://www.alodokter.com/mengenal-perbedaan-diabetes-tipe-1-dan-tipe-2"
+    },
+        {
+        "id": 22,
+        "title": "Senam Diabetes dan Latihan Pendukung Lainnya",
+        "category": "diabetes",
+        "excerpt": "Ada beragam cara menjaga kebugaran dan mengontrol gula darah bagi penderita diabetes.Salah satunya adalah dengan melakukan senam diabetes dan latihan pendukung lainnya, mulai dari jalan santai, yoga, dan taichi.",
+       "content": "Senam diabetes dan olahraga rutin sangat penting bagi penderita diabetes untuk menjaga kebugaran dan mengontrol kadar gula darah.\n\n1. **Manfaat Olahraga bagi Penderita Diabetes**\n   - Meningkatkan efektivitas insulin\n   - Mengontrol kadar gula darah\n   - Mendukung pengobatan secara menyeluruh\n\n2. **Jenis Latihan yang Disarankan**\n   - **Senam diabetes**: Praktis dan mudah dilakukan.\n   - **Tai chi**: Latihan lambat yang memadukan gerakan tubuh, pernapasan, dan meditasi.\n   - **Yoga**: Meningkatkan fleksibilitas, menurunkan stres, dan menyeimbangkan sistem saraf.\n   - **Lainnya**: Jalan santai, berenang, bersepeda, pilates, angkat beban, menari.\n\n3. **Durasi Olahraga**\n   - 20–30 menit per sesi atau minimal 150 menit per minggu.\n\n4. **Tips Aman Berolahraga**\n   - Periksa kadar gula darah sebelum dan sesudah olahraga.\n   - Jangan berolahraga jika gula darah >250 mg/dL.\n   - Lakukan pemanasan dan pendinginan masing-masing 5 menit.\n   - Minum cukup air dan siapkan camilan manis jika risiko hipoglikemia.\n   - Gunakan sepatu dan kaus kaki yang nyaman.\n   - Hentikan olahraga jika merasa pusing atau sesak napas.\n   - Konsultasikan ke dokter sebelum memulai program olahraga.\n\nOlahraga teratur, bersama pola makan sehat dan pengobatan yang tepat, dapat meningkatkan kualitas hidup penderita diabetes."
+        ,"author": "dr. Kevin Adrian",
+        "date": "2024-12-27",
+        "source": "Alodokter",
+        "image": "public/diabetes4.png",
+        "originalUrl": "https://www.alodokter.com/senam-diabetes-dan-latihan-pendukung-lainnya"
+    },
+        {
+        "id": 23,
+        "title": "Diabetes pada Anak, Ketahui Penyebab, Gejala, dan Pengobatannya",
+        "category": "diabetes",
+        "excerpt": "Diabetes pada anak sering kali menimbulkan gejala berupa sering haus dan sering buang air kecil, serta banyak makan tapi berat badannya justru turun. Oleh karena itu, sebagai orang tua, penting bagi Anda untuk mengenali berbagai risiko dan gejala diabetes pada anak agar kondisi ini tidak terlambat ditangani oleh dokter.",
+        "content": "Diabetes pada anak merupakan kondisi yang semakin meningkat di Indonesia, terutama pada anak usia 0–18 tahun. Diabetes tipe 1 disebabkan oleh gangguan autoimun yang merusak pankreas, sementara diabetes tipe 2 terjadi karena resistensi insulin. Gejalanya meliputi sering haus dan buang air kecil, peningkatan nafsu makan, penurunan berat badan, kelelahan, penglihatan kabur, luka sulit sembuh, dan penggelapan warna kulit di area tertentu. Diagnosis dilakukan dengan pemeriksaan gula darah dan tes autoantibodi, dan pengobatan disesuaikan dengan tipe diabetes—baik melalui terapi insulin, obat-obatan, maupun perubahan gaya hidup seperti pola makan sehat dan olahraga teratur.\n\nDeteksi dini sangat penting agar komplikasi berat dapat dicegah. Orang tua perlu waspada jika anak menunjukkan gejala atau memiliki faktor risiko seperti keturunan, obesitas, dan kebiasaan makan tidak sehat. Konsultasi dengan dokter diperlukan agar anak mendapatkan perawatan dan pengelolaan diabetes yang optimal."
+        ,"author": "dr. Kevin Adrian",
+        "date": "2024-12-17",
+        "source": "Alodokter",
+        "image": "public/diabetes5.png",
+        "originalUrl": "https://www.alodokter.com/diabetes-pada-anak-penyebab-risiko-dan-gejala"
+    },
+        {
+        "id": 24,
+        "title": "Diabetes Tipe 2",
+        "category": "diabetes",
+        "excerpt": "Risiko terkena diabetes tipe 2 bisa dikurangi dengan menerapkan pola hidup sehat. Selain untuk menurunkan risiko, menjalani pola hidup sehat juga dapat mencegah komplikasi diabetes tipe 2.",
+        "content": "Pencegahan diabetes tipe 2 dapat dilakukan dengan menerapkan pola hidup sehat yang konsisten. Beberapa langkah penting meliputi konsumsi makanan bergizi seimbang yang tinggi serat, rendah lemak, dan kalori, serta menghindari makanan dan minuman tinggi gula. Aktivitas fisik seperti jalan pagi, bersepeda, atau berenang selama 30 menit setiap hari juga dianjurkan untuk menjaga berat badan ideal dan meningkatkan sensitivitas insulin.\n\nLangkah lainnya termasuk berhenti merokok, mengelola stres, tidur cukup, tidak duduk terlalu lama, dan melakukan pemeriksaan kesehatan secara rutin. Upaya-upaya ini tidak hanya menurunkan risiko terkena diabetes tipe 2, tetapi juga membantu mencegah komplikasinya bila sudah terdiagnosis.",
+        "author": "dr. Pittara",
+        "date": "2023-01-11",
+        "source": "Alodokter",
+        "image": "public/diabetes6.png",
+        "originalUrl": "https://www.alodokter.com/diabetes-tipe-2/pencegahan"
+    },
+        {
+        "id": 25,
+        "title": "Diabetes Gestasional",
+        "category": "diabetes",
+        "excerpt": "Diabetes gestasional adalah diabetes yang berlangsung selama masa kehamilan sampai proses persalinan. Kondisi ini umumnya terjadi pada trimester kedua atau trimester ketiga.",
+        "content": "Diabetes gestasional adalah kondisi peningkatan kadar gula darah yang terjadi selama kehamilan, umumnya pada trimester kedua atau ketiga, akibat resistensi insulin yang dipicu oleh hormon kehamilan. Meski gejalanya mirip dengan keluhan umum saat hamil, seperti sering haus, mudah lelah, dan penglihatan buram, kondisi ini berisiko menimbulkan komplikasi serius bagi ibu dan janin jika tidak ditangani.\n\nDiagnosis dilakukan melalui tes toleransi glukosa oral (TTGO), tes HbA1c, dan USG. Penanganannya mencakup pola makan sehat, olahraga teratur, serta pemberian obat seperti metformin atau insulin jika diperlukan. Diabetes gestasional dapat meningkatkan risiko preeklampsia, persalinan caesar, hingga diabetes tipe 2 di masa depan, baik pada ibu maupun anak. Pencegahannya meliputi menjaga berat badan ideal, konsumsi makanan bergizi, dan olahraga rutin sebelum dan selama kehamilan.",
+        "author": "dr. Pittara",
+        "date": "2022-01-17",
+        "source": "Alodokter",
+        "image": "public/diabetes7.png",
+        "originalUrl": "https://www.alodokter.com/diabetes-gestasional"
+    },
+        {
+        "id": 26,
+        "title": "Mitos Tentang Diabetes yang Perlu Anda Cermati",
+        "category": "diabetes",
+        "excerpt": "Mari luruskan hal-hal tentang diabetes yang kerap salah. Inilah beberapa mitos seputar diabetes yang tak perlu Anda percaya lagi.",
+        "content": "Artikel ini membahas berbagai mitos umum seputar diabetes yang sering disalahpahami masyarakat. Beberapa di antaranya adalah anggapan bahwa diabetes selalu bergejala, adanya istilah 'diabetes basah dan kering', dan bahwa semua penderita diabetes harus menjalani terapi insulin. Faktanya, gejala diabetes bisa samar, tidak ada klasifikasi 'basah' atau 'kering', dan pengobatan tergantung kondisi masing-masing individu.\n\nSelain itu, mitos seperti orang kurus tidak bisa terkena diabetes, konsumsi obat diabetes merusak ginjal, dan semua diabetesi harus menjalani diet yang sama juga dibantah. Diabetes dapat dicegah dengan pola hidup sehat, dan penderita masih bisa mengonsumsi gula dalam takaran tepat. Penting untuk memverifikasi informasi kesehatan dengan tenaga medis dan tidak mudah percaya pada informasi yang belum terbukti secara ilmiah."
+        ,"author": "Dr. Alvin Nursalim SpPD",
+        "date": "2020-09-25",
+        "source": "KlikDokter",
+        "image": "public/diabetes8.png",
+        "originalUrl": "https://www.klikdokter.com/info-sehat/diabetes/mitos-tentang-diabetes-yang-perlu-anda-cermati"
+    },
+        {
+        "id": 27,
+        "title": "Tips Puasa bagi Penderita Diabetes yang Penting Diketahui",
+        "category": "diabetes",
+        "excerpt": "Berpuasa di bulan Ramadan adalah ibadah wajib yang harus dijalankan seluruh umat Islam. Namun bagi penderita diabetes, berpuasa dapat menimbulkan komplikasi yang berbahaya jika tidak dilakukan dengan tepat.",
+        "content": "Artikel ini memberikan panduan penting bagi penderita diabetes yang ingin menjalankan ibadah puasa di bulan Ramadan. Puasa dapat meningkatkan risiko komplikasi serius seperti hipoglikemia, hiperglikemia, ketoasidosis diabetik, dan dehidrasi jika tidak dilakukan dengan hati-hati.\n\nBeberapa tips utama mencakup: konsultasi dengan dokter sebelum puasa, menghindari makanan tinggi karbohidrat sederhana dan lemak, membatasi aktivitas fisik, mencukupi asupan cairan saat sahur dan berbuka, serta mewaspadai gejala gula darah rendah seperti gemetar dan pusing. Bila kadar gula darah <70 mg/dL atau >300 mg/dL, puasa harus segera dibatalkan. Disarankan untuk melakukan pemeriksaan medis 1–2 bulan sebelum Ramadan guna memastikan kondisi tubuh siap berpuasa."
+        ,"author": "dr. Kevin Adrian",
+        "date": "2024-12-02",
+        "source": "Alodokter",
+        "image": "public/diabetes9.png",
+        "originalUrl": "https://www.alodokter.com/tips-puasa-bagi-penderita-diabetes-yang-penting-diketahui"
     },
     {
         "id": 20,
