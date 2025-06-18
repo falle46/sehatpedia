@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Info Portal - Sistem Informasi Kesehatan</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                    <h1>Health Info Portal</h1>
+                </div>
+                <div class="header-actions">
+                    <div class="search-container">
+                        <input type="text" id="searchInput" placeholder="Cari artikel kesehatan...">
+                        <button id="searchBtn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="history-btn" id="historyBtn">
+                        <i class="fas fa-history"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>Kategori</h3>
+            <button class="sidebar-close" id="sidebarClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="category-link active" data-category="all">
+                <i class="fas fa-home"></i> Semua Artikel
+            </a>
+            <a href="#" class="category-link" data-category="penyakit-menular">
+                <i class="fas fa-virus"></i> Penyakit Menular
+            </a>
+            <a href="#" class="category-link" data-category="penyakit-tidak-menular">
+                <i class="fas fa-shield-alt"></i> Penyakit Tidak Menular
+            </a>
+            <a href="#" class="category-link" data-category="penyakit-jantung">
+                <i class="fas fa-heart"></i> Penyakit Jantung
+            </a>
+            <a href="#" class="category-link" data-category="diabetes">
+                <i class="fas fa-syringe"></i> Diabetes
+            </a>
+            <a href="#" class="category-link" data-category="pernapasan">
+                <i class="fas fa-lungs"></i> Pernapasan
+            </a>
+            <a href="#" class="category-link" data-category="kanker">
+                <i class="fas fa-ribbon"></i> Kanker
+            </a>
+            <a href="#" class="category-link" data-category="mental">
+                <i class="fas fa-brain"></i> Kesehatan Mental
+            </a>
+            <a href="#" class="category-link" data-category="penyakit-kulit">
+                <i class="fas fa-hand"></i> Penyakit Kulit
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Search Results Info -->
+            <div class="search-info" id="searchInfo" style="display: none;">
+                <p>Menampilkan hasil pencarian untuk: <strong id="searchTerm"></strong></p>
+                <button class="clear-search" id="clearSearch">
+                    <i class="fas fa-times"></i> Hapus Pencarian
+                </button>
+            </div>
+
+            <!-- Articles Grid -->
+            <div class="articles-section">
+                <h2 id="sectionTitle">Artikel Terbaru</h2>
+                <div class="articles-grid" id="articlesGrid">
+                    <!-- Articles will be loaded here -->
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination" id="pagination">
+                    <!-- Pagination will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- History Modal -->
+    <div class="modal" id="historyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Riwayat Pencarian</h3>
+                <button class="modal-close" id="closeHistoryModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="historyList">
+                    <!-- History items will be loaded here -->
+                </div>
+                <button class="clear-history-btn" id="clearHistoryBtn">
+                    <i class="fas fa-trash"></i> Hapus Semua Riwayat
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Article Modal -->
+    <div class="modal" id="articleModal">
+        <div class="modal-content article-modal-content">
+            <div class="modal-header">
+                <h3 id="articleModalTitle"></h3>
+                <button class="modal-close" id="closeArticleModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="articleModalContent">
+                    <!-- Article content will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Health Info Portal. Sistem Informasi Kesehatan berbasis Information Retrieval.</p>
+                <p>Dibuat untuk edukasi kesehatan masyarakat Indonesia.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

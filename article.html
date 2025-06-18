@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Detail - Health Info Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <button class="back-btn" id="backBtn">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <div class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                    <h1>Health Info Portal</h1>
+                </div>
+                <div class="header-actions">
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="home-btn" id="homeBtn">
+                        <i class="fas fa-home"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <article class="article-detail" id="articleDetail">
+                <!-- Article content will be loaded here -->
+                <div class="article-loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Memuat artikel...</p>
+                </div>
+            </article>
+
+            <!-- Related Articles Section -->
+            <section class="related-articles" id="relatedArticles" style="display: none;">
+                <h3>Artikel Terkait</h3>
+                <div class="related-articles-grid" id="relatedArticlesGrid">
+                    <!-- Related articles will be loaded here -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Health Info Portal. Sistem Informasi Kesehatan berbasis Information Retrieval.</p>
+                <p>Dibuat untuk edukasi kesehatan masyarakat Indonesia.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="article.js"></script>
+</body>
+</html>
