@@ -5,6 +5,11 @@ let itemsPerPage = 6;
 let currentCategory = 'all';
 let currentSearchTerm = '';
 let searchHistory = [];
+let userPreferences = {
+    categories: {},
+    keywords: {},
+    lastSearchCategory: null
+};
 
 // DOM elements
 const elements = {
@@ -41,9 +46,10 @@ async function initializeApp() {
     try {
         await loadArticlesData();
         loadSearchHistory();
+        loadUserPreferences();
         initializeTheme();
         bindEventListeners();
-        displayArticles();
+        displayPersonalizedArticles();
     } catch (error) {
         console.error('Error initializing app:', error);
         showError('Gagal memuat data aplikasi. Silakan refresh halaman.');
@@ -91,176 +97,175 @@ function getDummyData() {
             source: "Majalah Kesehatan Indonesia",
             image: "https://images.pexels.com/photos/4386464/pexels-photo-4386464.jpeg?auto=compress&cs=tinysrgb&w=400",
             originalUrl: "https://example.com/article2"
-        },
-        {
-            id: 3,
-            title: "Strategi Pencegahan Hipertensi di Usia Muda",
-            category: "penyakit-tidak-menular",
-            excerpt: "Hipertensi tidak hanya menyerang lansia. Pelajari cara mencegah tekanan darah tinggi sejak usia muda dengan pola hidup sehat.",
-            content: "Hipertensi atau tekanan darah tinggi kini semakin banyak ditemukan pada usia muda. Faktor gaya hidup modern menjadi penyebab utama...",
-            author: "Dr. Bambang Hartono",
-            date: "2025-01-08",
-            source: "Pusat Kesehatan Nasional",
-            image: "https://images.pexels.com/photos/4386465/pexels-photo-4386465.jpeg?auto=compress&cs=tinysrgb&w=400",
-            originalUrl: "https://example.com/article3"
-        },
-        {
-            id: 4,
-            title: "Obesitas: Penyebab dan Cara Mengatasinya",
-            category: "penyakit-tidak-menular",
-            excerpt: "Obesitas menjadi masalah kesehatan global. Ketahui penyebab obesitas dan strategi efektif untuk mencapai berat badan ideal.",
-            content: "Obesitas merupakan kondisi penumpukan lemak berlebih yang dapat mengganggu kesehatan. Berbagai faktor dapat menyebabkan obesitas...",
-            author: "Dr. Maya Sari",
-            date: "2025-01-05",
-            source: "Klinik Gizi Sehat",
-            image: "https://images.pexels.com/photos/6975474/pexels-photo-6975474.jpeg?auto=compress&cs=tinysrgb&w=400",
-            originalUrl: "https://example.com/article4"
-        },
-        {
-            id: 5,
-            title: "Mengenal Serangan Jantung dan Pertolongan Pertama",
-            category: "penyakit-jantung",
-            excerpt: "Serangan jantung dapat terjadi kapan saja. Pelajari tanda-tanda serangan jantung dan cara memberikan pertolongan pertama yang tepat.",
-            content: "Serangan jantung adalah kondisi darurat medis yang memerlukan penanganan segera. Mengetahui tanda-tandanya dapat menyelamatkan nyawa...",
-            author: "Dr. Rudi Setiawan",
-            date: "2025-01-12",
-            source: "Yayasan Jantung Indonesia",
-            image: "https://images.pexels.com/photos/7659564/pexels-photo-7659564.jpeg?auto=compress&cs=tinysrgb&w=400",
-            originalUrl: "https://example.com/article5"
-        },
-        {
-            id: 6,
-            title: "Menjaga Kesehatan Jantung dengan Olahraga Teratur",
-            category: "penyakit-jantung",
-            excerpt: "Olahraga teratur adalah kunci utama menjaga kesehatan jantung. Temukan jenis olahraga yang tepat untuk jantung sehat.",
-            content: "Jantung adalah organ vital yang memerlukan perawatan khusus. Olahraga teratur dapat membantu memperkuat otot jantung...",
-            author: "Dr. Fitri Handayani",
-            date: "2025-01-07",
-            source: "Pusat Jantung Sehat",
-            image: "https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg?auto=compress&cs=tinysrgb&w=400",
-            originalUrl: "https://example.com/article6"
-        },
-        {
-            id: 7,
-            title: "Mengelola Diabetes Tipe 2 dengan Diet Seimbang",
-            category: "diabetes",
-            excerpt: "Diet seimbang adalah kunci pengelolaan diabetes tipe 2. Pelajari makanan yang dianjurkan dan yang harus dihindari.",
-            content: "Diabetes tipe 2 dapat dikelola dengan baik melalui pengaturan diet yang tepat. Pemilihan makanan sangat berpengaruh...",
-            author: "Dr. Indra Kusuma",
-            date: "2025-01-14",
-            source: "Asosiasi Diabetes Indonesia",
-            image: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400",
-            originalUrl: "https://example.com/article7"
-        },
-        {
-            id: 8,
-            title: "Komplikasi Diabetes dan Cara Pencegahannya",
-            category: "diabetes",
-            excerpt: "Diabetes yang tidak terkontrol dapat menyebabkan berbagai komplikasi serius. Ketahui komplikasi diabetes dan cara mencegahnya.",
-            content: "Komplikasi diabetes dapat mempengaruhi berbagai organ tubuh. Pengendalian gula darah yang baik dapat mencegah komplikasi...",
-            author: "Dr. Dewi Lestari",
-            date: "2025-01-11",
-            source: "Rumah Sakit Diabetes",
-            image: "https://images.pexels.com/photos/6823568/pexels-photo-6823568.jpeg?auto=compress&cs=tinysrgb&w=400",
-            originalUrl: "https://example.com/article8"
-        },
-        {
-            id: 9,
-            title: "Asma: Pemicu dan Cara Mengelolanya",
-            category: "pernapasan",
-            excerpt: "Asma dapat dipicu oleh berbagai faktor. Pelajari cara mengidentifikasi pemicu asma dan strategi pengelolaan yang efektif.",
-            content: "Asma adalah penyakit pernapasan kronis yang dapat dikontrol. Mengetahui pemicu asma sangat penting untuk pencegahan...",
-            author: "Dr. Ahmad Fauzi",
-            date: "2025-01-09",
-            source: "Klinik Pernapasan Sehat",
-            image: "https://images.pexels.com/photos/4386431/pexels-photo-4386431.jpeg?auto=compress&cs=tinysrgb&w=400",
-            originalUrl: "https://example.com/article9"
-        },
-        {
-            id: 10,
-            title: "PPOK: Penyebab, Gejala, dan Pengobatan",
-            category: "pernapasan",
-            excerpt: "Penyakit Paru Obstruktif Kronis (PPOK) adalah penyakit serius yang dapat dicegah. Kenali gejala dan pilihan pengobatannya.",
-            content: "PPOK merupakan penyakit paru-paru yang dapat berkembang secara progresif. Deteksi dini dan pengobatan tepat sangat penting...",
-            author: "Dr. Lina Marlina",
-            date: "2025-01-06",
-            source: "Perhimpunan Dokter Paru Indonesia",
-            image: "https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&w=400",
-            originalUrl: "https://example.com/article10"
-        },
-        {
-            id: 11,
-            title: "Deteksi Dini Kanker Payudara",
-            category: "kanker",
-            excerpt: "Deteksi dini kanker payudara dapat meningkatkan angka kesembuhan. Pelajari cara melakukan pemeriksaan payudara sendiri (SADARI).",
-            content: "Kanker payudara adalah salah satu kanker yang paling umum pada wanita. Deteksi dini melalui SADARI sangat penting...",
-            author: "Dr. Rina Sari",
-            date: "2025-01-13",
-            source: "Yayasan Kanker Indonesia",
-            image: "https://images.pexels.com/photos/579474/pexels-photo-579474.jpeg?auto=compress&cs=tinysrgb&w=400",
-            originalUrl: "https://example.com/article11"
-        },
-        {
-            id: 12,
-            title: "Pencegahan Kanker Serviks dengan Vaksinasi HPV",
-            category: "kanker",
-            excerpt: "Vaksinasi HPV dapat mencegah kanker serviks. Ketahui pentingnya vaksinasi HPV dan kapan waktu yang tepat untuk mendapatkannya.",
-            content: "Kanker serviks dapat dicegah melalui vaksinasi HPV dan skrining rutin. Program vaksinasi HPV telah terbukti efektif...",
-            author: "Dr. Sinta Dewi",
-            date: "2025-01-04",
-            source: "Kementerian Kesehatan RI",
-            image: "https://images.pexels.com/photos/4386370/pexels-photo-4386370.jpeg?auto=compress&cs=tinysrgb&w=400",
-            originalUrl: "https://example.com/article12"
-        },
-        {
-            id: 13,
-            title: "Mengatasi Stres dan Kecemasan di Era Digital",
-            category: "mental",
-            excerpt: "Era digital membawa tantangan baru bagi kesehatan mental. Pelajari cara mengatasi stres dan kecemasan yang efektif.",
-            content: "Kemajuan teknologi digital dapat menimbulkan stres dan kecemasan. Penting untuk mengetahui cara mengelola kesehatan mental...",
-            author: "Dr. Psikologi Andi Wijaya",
-            date: "2025-01-03",
-            source: "Perhimpunan Psikologi Indonesia",
-            image: "https://images.pexels.com/photos/5699456/pexels-photo-5699456.jpeg?auto=compress&cs=tinysrgb&w=400",
-            originalUrl: "https://example.com/article13"
-        },
-        {
-            id: 14,
-            title: "Depresi pada Remaja: Tanda dan Penanganan",
-            category: "mental",
-            excerpt: "Depresi pada remaja sering tidak terdeteksi. Kenali tanda-tanda depresi pada remaja dan cara penanganan yang tepat.",
-            content: "Depresi pada remaja memiliki karakteristik khusus yang berbeda dengan depresi pada dewasa. Penanganan dini sangat penting...",
-            author: "Dr. Maya Psikologi",
-            date: "2025-01-02",
-            source: "Pusat Kesehatan Mental Remaja",
-            image: "https://images.pexels.com/photos/5699475/pexels-photo-5699475.jpeg?auto=compress&cs=tinysrgb&w=400",
-            originalUrl: "https://example.com/article14"
-        },
-        {
-            id: 15,
-            title: "Eksim: Penyebab dan Perawatan yang Tepat",
-            category: "penyakit-kulit",
-            excerpt: "Eksim adalah penyakit kulit yang umum terjadi. Ketahui penyebab eksim dan cara perawatan kulit yang tepat untuk mengurangi gejala.",
-            content: "Eksim atau dermatitis atopik adalah kondisi kulit yang menyebabkan peradangan. Perawatan yang tepat dapat mengurangi gejala...",
-            author: "Dr. Dermatologi Budi",
-            date: "2025-01-01",
-            source: "Perhimpunan Dokter Spesialis Kulit Indonesia",
-            image: "https://images.pexels.com/photos/4386294/pexels-photo-4386294.jpeg?auto=compress&cs=tinysrgb&w=400",
-            originalUrl: "https://example.com/article15"
-        },
-        {
-            id: 16,
-            title: "Jerawat pada Dewasa: Penyebab dan Solusinya",
-            category: "penyakit-kulit",
-            excerpt: "Jerawat tidak hanya masalah remaja. Pelajari penyebab jerawat pada dewasa dan berbagai pilihan pengobatan yang tersedia.",
-            content: "Jerawat pada dewasa memiliki karakteristik dan penyebab yang berbeda dengan jerawat remaja. Pengobatan yang tepat diperlukan...",
-            author: "Dr. Kulit Cantik",
-            date: "2024-12-30",
-            source: "Klinik Dermatologi Modern",
-            image: "https://images.pexels.com/photos/3845457/pexels-photo-3845457.jpeg?auto=compress&cs=tinysrgb&w=400",
-            originalUrl: "https://example.com/article16"
         }
     ];
+}
+
+// User Preferences Management
+function loadUserPreferences() {
+    const savedPreferences = localStorage.getItem('userPreferences');
+    if (savedPreferences) {
+        userPreferences = { ...userPreferences, ...JSON.parse(savedPreferences) };
+    }
+}
+
+function saveUserPreferences() {
+    localStorage.setItem('userPreferences', JSON.stringify(userPreferences));
+}
+
+function updateUserPreferences(searchTerm, articles) {
+    // Update keyword preferences
+    const keywords = searchTerm.toLowerCase().split(' ');
+    keywords.forEach(keyword => {
+        if (keyword.length > 2) { // Ignore short words
+            userPreferences.keywords[keyword] = (userPreferences.keywords[keyword] || 0) + 1;
+        }
+    });
+
+    // Update category preferences based on search results
+    articles.forEach(article => {
+        userPreferences.categories[article.category] = (userPreferences.categories[article.category] || 0) + 1;
+    });
+
+    // Store last search category if search results are primarily from one category
+    const categoryCount = {};
+    articles.forEach(article => {
+        categoryCount[article.category] = (categoryCount[article.category] || 0) + 1;
+    });
+
+    const dominantCategory = Object.keys(categoryCount).reduce((a, b) => 
+        categoryCount[a] > categoryCount[b] ? a : b
+    );
+
+    if (articles.length > 0 && categoryCount[dominantCategory] / articles.length > 0.6) {
+        userPreferences.lastSearchCategory = dominantCategory;
+    }
+
+    saveUserPreferences();
+}
+
+// Personalized Article Recommendation System
+function getPersonalizedArticles() {
+    let articles = [...articlesData];
+    
+    // If user has search history and preferences, personalize the results
+    if (Object.keys(userPreferences.categories).length > 0 || Object.keys(userPreferences.keywords).length > 0) {
+        articles = articles.map(article => ({
+            ...article,
+            personalizedScore: calculatePersonalizedScore(article)
+        })).sort((a, b) => b.personalizedScore - a.personalizedScore);
+    } else {
+        // For new users, sort by date
+        articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+    }
+    
+    return articles;
+}
+
+function calculatePersonalizedScore(article) {
+    let score = 0;
+    
+    // Base score from recency (newer articles get higher base score)
+    const daysSincePublished = (new Date() - new Date(article.date)) / (1000 * 60 * 60 * 24);
+    score += Math.max(0, 100 - daysSincePublished); // Max 100 points for very recent articles
+    
+    // Category preference score
+    const categoryWeight = userPreferences.categories[article.category] || 0;
+    score += categoryWeight * 50; // Each category interaction adds 50 points
+    
+    // Keyword relevance score
+    const articleText = `${article.title} ${article.excerpt} ${article.content}`.toLowerCase();
+    Object.keys(userPreferences.keywords).forEach(keyword => {
+        const keywordCount = (articleText.match(new RegExp(keyword, 'g')) || []).length;
+        const keywordWeight = userPreferences.keywords[keyword];
+        score += keywordCount * keywordWeight * 10; // Each keyword match adds points based on user interest
+    });
+    
+    // Boost articles from last searched category
+    if (userPreferences.lastSearchCategory === article.category) {
+        score += 200; // Significant boost for articles from recently searched category
+    }
+    
+    // Diversity factor - slightly reduce score for categories user has seen too much
+    const categoryOverexposure = userPreferences.categories[article.category] || 0;
+    if (categoryOverexposure > 10) {
+        score *= 0.9; // 10% reduction for overexposed categories
+    }
+    
+    return score;
+}
+
+// Enhanced Information Retrieval Algorithm
+function getRelevantArticles() {
+    let filteredArticles = [...articlesData];
+    
+    // Apply category filter
+    if (currentCategory !== 'all') {
+        filteredArticles = filteredArticles.filter(article => 
+            article.category === currentCategory
+        );
+    }
+    
+    // Apply search filter with relevance scoring
+    if (currentSearchTerm) {
+        filteredArticles = filteredArticles.map(article => ({
+            ...article,
+            relevanceScore: calculateRelevanceScore(article, currentSearchTerm)
+        })).filter(article => article.relevanceScore > 0)
+          .sort((a, b) => b.relevanceScore - a.relevanceScore);
+        
+        // Update user preferences based on search results
+        updateUserPreferences(currentSearchTerm, filteredArticles);
+    } else if (currentCategory === 'all') {
+        // For homepage, show personalized articles
+        filteredArticles = getPersonalizedArticles();
+    } else {
+        // For specific categories, sort by date
+        filteredArticles.sort((a, b) => new Date(b.date) - new Date(a.date));
+    }
+    
+    return filteredArticles;
+}
+
+function calculateRelevanceScore(article, searchTerm) {
+    const searchWords = searchTerm.toLowerCase().split(' ');
+    let score = 0;
+    
+    searchWords.forEach(word => {
+        // Title matches (highest weight)
+        const titleMatches = (article.title.toLowerCase().match(new RegExp(word, 'g')) || []).length;
+        score += titleMatches * 15;
+        
+        // Category matches
+        if (article.category.toLowerCase().includes(word)) {
+            score += 12;
+        }
+        
+        // Excerpt matches
+        const excerptMatches = (article.excerpt.toLowerCase().match(new RegExp(word, 'g')) || []).length;
+        score += excerptMatches * 8;
+        
+        // Content matches
+        const contentMatches = (article.content.toLowerCase().match(new RegExp(word, 'g')) || []).length;
+        score += contentMatches * 5;
+        
+        // Author matches
+        if (article.author.toLowerCase().includes(word)) {
+            score += 3;
+        }
+        
+        // Source matches
+        if (article.source.toLowerCase().includes(word)) {
+            score += 2;
+        }
+    });
+    
+    // Boost score based on user's historical preferences
+    if (userPreferences.categories[article.category]) {
+        score += userPreferences.categories[article.category] * 2;
+    }
+    
+    return score;
 }
 
 // Bind event listeners
@@ -321,6 +326,14 @@ function bindEventListeners() {
     });
 }
 
+// Display personalized articles on homepage
+function displayPersonalizedArticles() {
+    if (currentCategory === 'all' && !currentSearchTerm) {
+        updateSectionTitle();
+        displayArticles();
+    }
+}
+
 // Sidebar functions
 function toggleSidebar() {
     elements.sidebar.classList.toggle('open');
@@ -367,7 +380,10 @@ function clearSearch() {
     currentSearchTerm = '';
     elements.searchInput.value = '';
     hideSearchInfo();
-    displayArticles();
+    // Return to personalized homepage
+    currentCategory = 'all';
+    updateActiveCategory();
+    displayPersonalizedArticles();
 }
 
 function showSearchInfo() {
@@ -387,26 +403,24 @@ function selectCategory(category) {
     elements.searchInput.value = '';
     hideSearchInfo();
     
-    // Update active category link
+    updateActiveCategory();
+    updateSectionTitle();
+    closeSidebar();
+    displayArticles();
+}
+
+function updateActiveCategory() {
     elements.categoryLinks.forEach(link => {
         link.classList.remove('active');
-        if (link.dataset.category === category) {
+        if (link.dataset.category === currentCategory) {
             link.classList.add('active');
         }
     });
-    
-    // Update section title
-    updateSectionTitle();
-    
-    // Close sidebar on mobile
-    closeSidebar();
-    
-    displayArticles();
 }
 
 function updateSectionTitle() {
     const categoryNames = {
-        'all': 'Semua Artikel',
+        'all': getPersonalizedTitle(),
         'penyakit-menular': 'Artikel Penyakit Menular',
         'penyakit-tidak-menular': 'Artikel Penyakit Tidak Menular',
         'penyakit-jantung': 'Artikel Penyakit Jantung',
@@ -420,64 +434,26 @@ function updateSectionTitle() {
     elements.sectionTitle.textContent = categoryNames[currentCategory] || 'Artikel Terbaru';
 }
 
-// Information Retrieval Algorithm
-function getRelevantArticles() {
-    let filteredArticles = [...articlesData];
-    
-    // Apply category filter
-    if (currentCategory !== 'all') {
-        filteredArticles = filteredArticles.filter(article => 
-            article.category === currentCategory
-        );
+function getPersonalizedTitle() {
+    if (userPreferences.lastSearchCategory) {
+        const categoryNames = {
+            'penyakit-menular': 'Rekomendasi: Penyakit Menular',
+            'penyakit-tidak-menular': 'Rekomendasi: Penyakit Tidak Menular',
+            'penyakit-jantung': 'Rekomendasi: Penyakit Jantung',
+            'diabetes': 'Rekomendasi: Diabetes',
+            'pernapasan': 'Rekomendasi: Pernapasan',
+            'kanker': 'Rekomendasi: Kanker',
+            'mental': 'Rekomendasi: Kesehatan Mental',
+            'penyakit-kulit': 'Rekomendasi: Penyakit Kulit'
+        };
+        return categoryNames[userPreferences.lastSearchCategory] || 'Artikel Direkomendasikan';
     }
     
-    // Apply search filter with relevance scoring
-    if (currentSearchTerm) {
-        filteredArticles = filteredArticles.map(article => ({
-            ...article,
-            relevanceScore: calculateRelevanceScore(article, currentSearchTerm)
-        })).filter(article => article.relevanceScore > 0)
-          .sort((a, b) => b.relevanceScore - a.relevanceScore);
-    } else {
-        // Sort by date if no search term
-        filteredArticles.sort((a, b) => new Date(b.date) - new Date(a.date));
+    if (Object.keys(userPreferences.categories).length > 0) {
+        return 'Artikel Direkomendasikan untuk Anda';
     }
     
-    return filteredArticles;
-}
-
-function calculateRelevanceScore(article, searchTerm) {
-    const searchWords = searchTerm.toLowerCase().split(' ');
-    let score = 0;
-    
-    searchWords.forEach(word => {
-        // Title matches (highest weight)
-        if (article.title.toLowerCase().includes(word)) {
-            score += 10;
-        }
-        
-        // Category matches
-        if (article.category.toLowerCase().includes(word)) {
-            score += 8;
-        }
-        
-        // Excerpt matches
-        if (article.excerpt.toLowerCase().includes(word)) {
-            score += 5;
-        }
-        
-        // Content matches
-        if (article.content.toLowerCase().includes(word)) {
-            score += 3;
-        }
-        
-        // Author matches
-        if (article.author.toLowerCase().includes(word)) {
-            score += 2;
-        }
-    });
-    
-    return score;
+    return 'Artikel Terbaru';
 }
 
 // Display functions
@@ -497,12 +473,13 @@ function displayArticles() {
 }
 
 function renderArticles(articles) {
-    const articlesHTML = articles.map(article => `
-        <div class="article-card" onclick="navigateToArticle(${article.id})">
+    const articlesHTML = articles.map((article, index) => `
+        <div class="article-card" onclick="navigateToArticle(${article.id})" style="animation-delay: ${index * 0.1}s">
             <img src="${article.image}" alt="${article.title}" class="article-image" 
                  onerror="this.src='https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&cs=tinysrgb&w=400'">
             <div class="article-content">
                 <span class="article-category">${getCategoryDisplayName(article.category)}</span>
+                ${article.personalizedScore ? `<div class="recommendation-badge"><i class="fas fa-star"></i> Direkomendasikan</div>` : ''}
                 <h3 class="article-title">${article.title}</h3>
                 <p class="article-excerpt">${article.excerpt}</p>
                 <div class="article-meta">
@@ -584,6 +561,13 @@ function changePage(page) {
 
 // Navigation to article detail page
 function navigateToArticle(articleId) {
+    // Track article view for personalization
+    const article = articlesData.find(a => a.id === articleId);
+    if (article) {
+        userPreferences.categories[article.category] = (userPreferences.categories[article.category] || 0) + 1;
+        saveUserPreferences();
+    }
+    
     window.location.href = `article.html?id=${articleId}`;
 }
 
@@ -662,14 +646,7 @@ function searchFromHistory(searchTerm) {
     currentPage = 1;
     currentCategory = 'all';
     
-    // Update active category
-    elements.categoryLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.dataset.category === 'all') {
-            link.classList.add('active');
-        }
-    });
-    
+    updateActiveCategory();
     showSearchInfo();
     updateSectionTitle();
     closeHistoryModal();
@@ -678,8 +655,19 @@ function searchFromHistory(searchTerm) {
 
 function clearHistory() {
     searchHistory = [];
+    userPreferences = {
+        categories: {},
+        keywords: {},
+        lastSearchCategory: null
+    };
     localStorage.removeItem('searchHistory');
+    localStorage.removeItem('userPreferences');
     renderHistoryList();
+    
+    // Refresh homepage to show latest articles instead of personalized
+    if (currentCategory === 'all' && !currentSearchTerm) {
+        displayPersonalizedArticles();
+    }
 }
 
 // Utility functions
