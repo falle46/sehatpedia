@@ -9,7 +9,8 @@ const elements = {
     themeToggle: document.getElementById('themeToggle'),
     articleDetail: document.getElementById('articleDetail'),
     relatedArticles: document.getElementById('relatedArticles'),
-    relatedArticlesGrid: document.getElementById('relatedArticlesGrid')
+    relatedArticlesGrid: document.getElementById('relatedArticlesGrid'),
+    logoBtn: document.getElementById('logoBtn')
 };
 
 // Initialize the application
@@ -75,11 +76,29 @@ function getDummyData() {
     ];
 }
 
+// Logo navigation function
+function handleLogoClick() {
+    // From article page, always go to homepage
+    window.location.href = 'index.html';
+}
+
 // Bind event listeners
 function bindEventListeners() {
-    elements.backBtn.addEventListener('click', goBack);
-    elements.homeBtn.addEventListener('click', goHome);
-    elements.themeToggle.addEventListener('click', toggleTheme);
+    // Logo click handler
+    if (elements.logoBtn) {
+        elements.logoBtn.addEventListener('click', handleLogoClick);
+        elements.logoBtn.style.cursor = 'pointer';
+    }
+
+    if (elements.backBtn) {
+        elements.backBtn.addEventListener('click', goBack);
+    }
+    if (elements.homeBtn) {
+        elements.homeBtn.addEventListener('click', goHome);
+    }
+    if (elements.themeToggle) {
+        elements.themeToggle.addEventListener('click', toggleTheme);
+    }
 }
 
 // Theme functions
@@ -99,8 +118,12 @@ function toggleTheme() {
 }
 
 function updateThemeIcon(theme) {
-    const icon = elements.themeToggle.querySelector('i');
-    icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    if (elements.themeToggle) {
+        const icon = elements.themeToggle.querySelector('i');
+        if (icon) {
+            icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+    }
 }
 
 // Navigation functions
@@ -184,7 +207,9 @@ function displayArticle(article) {
         </div>
     `;
     
-    elements.articleDetail.innerHTML = articleHTML;
+    if (elements.articleDetail) {
+        elements.articleDetail.innerHTML = articleHTML;
+    }
 }
 
 // Format article content with paragraphs
@@ -213,7 +238,7 @@ function loadRelatedArticles(article) {
         .filter(a => a.id !== article.id && a.category === article.category)
         .slice(0, 3);
     
-    if (relatedArticles.length > 0) {
+    if (relatedArticles.length > 0 && elements.relatedArticles) {
         elements.relatedArticles.style.display = 'block';
         renderRelatedArticles(relatedArticles);
     }
@@ -236,7 +261,9 @@ function renderRelatedArticles(articles) {
         </div>
     `).join('');
     
-    elements.relatedArticlesGrid.innerHTML = articlesHTML;
+    if (elements.relatedArticlesGrid) {
+        elements.relatedArticlesGrid.innerHTML = articlesHTML;
+    }
 }
 
 // Navigation to another article
@@ -296,17 +323,19 @@ function formatDate(dateString) {
 }
 
 function showError(message) {
-    elements.articleDetail.innerHTML = `
-        <div class="error-state">
-            <i class="fas fa-exclamation-triangle"></i>
-            <h3>Terjadi Kesalahan</h3>
-            <p>${message}</p>
-            <button onclick="goHome()" class="back-home-btn">
-                <i class="fas fa-home"></i>
-                Kembali ke Beranda
-            </button>
-        </div>
-    `;
+    if (elements.articleDetail) {
+        elements.articleDetail.innerHTML = `
+            <div class="error-state">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>Terjadi Kesalahan</h3>
+                <p>${message}</p>
+                <button onclick="goHome()" class="back-home-btn">
+                    <i class="fas fa-home"></i>
+                    Kembali ke Beranda
+                </button>
+            </div>
+        `;
+    }
 }
 
 // Make functions globally available

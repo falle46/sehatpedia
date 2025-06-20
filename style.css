@@ -76,12 +76,24 @@ body {
     gap: 1rem;
 }
 
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 .logo {
     display: flex;
     align-items: center;
     gap: 0.75rem;
     color: var(--primary-color);
     font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.logo:hover {
+    color: var(--primary-hover);
 }
 
 .logo i {
@@ -830,6 +842,10 @@ body {
         gap: 0.75rem;
     }
     
+    .header-left {
+        gap: 0.75rem;
+    }
+    
     .search-container {
         order: 3;
         flex: 1 1 100%;
@@ -904,6 +920,10 @@ body {
 @media (max-width: 480px) {
     .header-content {
         padding: 0.75rem 0;
+    }
+    
+    .header-left {
+        gap: 0.5rem;
     }
     
     .logo {

@@ -34,7 +34,8 @@ const elements = {
     closeArticleModal: document.getElementById('closeArticleModal'),
     articleModalTitle: document.getElementById('articleModalTitle'),
     articleModalContent: document.getElementById('articleModalContent'),
-    categoryLinks: document.querySelectorAll('.category-link')
+    categoryLinks: document.querySelectorAll('.category-link'),
+    logoBtn: document.getElementById('logoBtn')
 };
 
 // Initialize the application
@@ -268,62 +269,109 @@ function calculateRelevanceScore(article, searchTerm) {
     return score;
 }
 
+// Logo navigation function
+function handleLogoClick() {
+    // Check if we're on the homepage (index.html) or article page
+    const currentPath = window.location.pathname;
+    const isHomepage = currentPath.endsWith('index.html') || currentPath === '/' || currentPath.endsWith('/');
+    
+    if (isHomepage) {
+        // If on homepage, refresh the page
+        window.location.reload();
+    } else {
+        // If on article page or other pages, go to homepage
+        window.location.href = 'index.html';
+    }
+}
+
 // Bind event listeners
 function bindEventListeners() {
+    // Logo click handler
+    if (elements.logoBtn) {
+        elements.logoBtn.addEventListener('click', handleLogoClick);
+        elements.logoBtn.style.cursor = 'pointer';
+    }
+
     // Sidebar toggle
-    elements.sidebarToggle.addEventListener('click', toggleSidebar);
-    elements.sidebarClose.addEventListener('click', closeSidebar);
+    if (elements.sidebarToggle) {
+        elements.sidebarToggle.addEventListener('click', toggleSidebar);
+    }
+    if (elements.sidebarClose) {
+        elements.sidebarClose.addEventListener('click', closeSidebar);
+    }
     
     // Click outside sidebar to close
     document.addEventListener('click', (e) => {
-        if (elements.sidebar.classList.contains('open') && 
+        if (elements.sidebar && elements.sidebar.classList.contains('open') && 
             !elements.sidebar.contains(e.target) && 
-            !elements.sidebarToggle.contains(e.target)) {
+            elements.sidebarToggle && !elements.sidebarToggle.contains(e.target)) {
             closeSidebar();
         }
     });
 
     // Theme toggle
-    elements.themeToggle.addEventListener('click', toggleTheme);
+    if (elements.themeToggle) {
+        elements.themeToggle.addEventListener('click', toggleTheme);
+    }
 
     // Search functionality
-    elements.searchBtn.addEventListener('click', performSearch);
-    elements.searchInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            performSearch();
-        }
-    });
-    elements.clearSearch.addEventListener('click', clearSearch);
+    if (elements.searchBtn) {
+        elements.searchBtn.addEventListener('click', performSearch);
+    }
+    if (elements.searchInput) {
+        elements.searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+    }
+    if (elements.clearSearch) {
+        elements.clearSearch.addEventListener('click', clearSearch);
+    }
 
     // Category navigation
-    elements.categoryLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const category = e.currentTarget.dataset.category;
-            selectCategory(category);
+    if (elements.categoryLinks) {
+        elements.categoryLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const category = e.currentTarget.dataset.category;
+                selectCategory(category);
+            });
         });
-    });
+    }
 
     // History modal
-    elements.historyBtn.addEventListener('click', openHistoryModal);
-    elements.closeHistoryModal.addEventListener('click', closeHistoryModal);
-    elements.clearHistoryBtn.addEventListener('click', clearHistory);
+    if (elements.historyBtn) {
+        elements.historyBtn.addEventListener('click', openHistoryModal);
+    }
+    if (elements.closeHistoryModal) {
+        elements.closeHistoryModal.addEventListener('click', closeHistoryModal);
+    }
+    if (elements.clearHistoryBtn) {
+        elements.clearHistoryBtn.addEventListener('click', clearHistory);
+    }
 
     // Article modal
-    elements.closeArticleModal.addEventListener('click', closeArticleModal);
+    if (elements.closeArticleModal) {
+        elements.closeArticleModal.addEventListener('click', closeArticleModal);
+    }
 
     // Close modals when clicking outside
-    elements.historyModal.addEventListener('click', (e) => {
-        if (e.target === elements.historyModal) {
-            closeHistoryModal();
-        }
-    });
+    if (elements.historyModal) {
+        elements.historyModal.addEventListener('click', (e) => {
+            if (e.target === elements.historyModal) {
+                closeHistoryModal();
+            }
+        });
+    }
     
-    elements.articleModal.addEventListener('click', (e) => {
-        if (e.target === elements.articleModal) {
-            closeArticleModal();
-        }
-    });
+    if (elements.articleModal) {
+        elements.articleModal.addEventListener('click', (e) => {
+            if (e.target === elements.articleModal) {
+                closeArticleModal();
+            }
+        });
+    }
 }
 
 // Display personalized articles on homepage
@@ -336,11 +384,15 @@ function displayPersonalizedArticles() {
 
 // Sidebar functions
 function toggleSidebar() {
-    elements.sidebar.classList.toggle('open');
+    if (elements.sidebar) {
+        elements.sidebar.classList.toggle('open');
+    }
 }
 
 function closeSidebar() {
-    elements.sidebar.classList.remove('open');
+    if (elements.sidebar) {
+        elements.sidebar.classList.remove('open');
+    }
 }
 
 // Theme functions
@@ -360,25 +412,33 @@ function toggleTheme() {
 }
 
 function updateThemeIcon(theme) {
-    const icon = elements.themeToggle.querySelector('i');
-    icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    if (elements.themeToggle) {
+        const icon = elements.themeToggle.querySelector('i');
+        if (icon) {
+            icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+    }
 }
 
 // Search functions
 function performSearch() {
-    const searchTerm = elements.searchInput.value.trim();
-    if (searchTerm) {
-        currentSearchTerm = searchTerm;
-        currentPage = 1;
-        addToSearchHistory(searchTerm);
-        showSearchInfo();
-        displayArticles();
+    if (elements.searchInput) {
+        const searchTerm = elements.searchInput.value.trim();
+        if (searchTerm) {
+            currentSearchTerm = searchTerm;
+            currentPage = 1;
+            addToSearchHistory(searchTerm);
+            showSearchInfo();
+            displayArticles();
+        }
     }
 }
 
 function clearSearch() {
     currentSearchTerm = '';
-    elements.searchInput.value = '';
+    if (elements.searchInput) {
+        elements.searchInput.value = '';
+    }
     hideSearchInfo();
     // Return to personalized homepage
     currentCategory = 'all';
@@ -387,12 +447,16 @@ function clearSearch() {
 }
 
 function showSearchInfo() {
-    elements.searchInfo.style.display = 'flex';
-    elements.searchTerm.textContent = currentSearchTerm;
+    if (elements.searchInfo && elements.searchTerm) {
+        elements.searchInfo.style.display = 'flex';
+        elements.searchTerm.textContent = currentSearchTerm;
+    }
 }
 
 function hideSearchInfo() {
-    elements.searchInfo.style.display = 'none';
+    if (elements.searchInfo) {
+        elements.searchInfo.style.display = 'none';
+    }
 }
 
 // Category functions
@@ -400,7 +464,9 @@ function selectCategory(category) {
     currentCategory = category;
     currentPage = 1;
     currentSearchTerm = '';
-    elements.searchInput.value = '';
+    if (elements.searchInput) {
+        elements.searchInput.value = '';
+    }
     hideSearchInfo();
     
     updateActiveCategory();
@@ -410,12 +476,14 @@ function selectCategory(category) {
 }
 
 function updateActiveCategory() {
-    elements.categoryLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.dataset.category === currentCategory) {
-            link.classList.add('active');
-        }
-    });
+    if (elements.categoryLinks) {
+        elements.categoryLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.dataset.category === currentCategory) {
+                link.classList.add('active');
+            }
+        });
+    }
 }
 
 function updateSectionTitle() {
@@ -431,7 +499,9 @@ function updateSectionTitle() {
         'penyakit-kulit': 'Artikel Penyakit Kulit'
     };
     
-    elements.sectionTitle.textContent = categoryNames[currentCategory] || 'Artikel Terbaru';
+    if (elements.sectionTitle) {
+        elements.sectionTitle.textContent = categoryNames[currentCategory] || 'Artikel Terbaru';
+    }
 }
 
 function getPersonalizedTitle() {
@@ -500,21 +570,29 @@ function renderArticles(articles) {
         </div>
     `).join('');
     
-    elements.articlesGrid.innerHTML = articlesHTML;
+    if (elements.articlesGrid) {
+        elements.articlesGrid.innerHTML = articlesHTML;
+    }
 }
 
 function showEmptyState() {
-    elements.articlesGrid.innerHTML = `
-        <div class="empty-state">
-            <i class="fas fa-search"></i>
-            <h3>Tidak ada artikel ditemukan</h3>
-            <p>Coba gunakan kata kunci yang berbeda atau pilih kategori lain.</p>
-        </div>
-    `;
-    elements.pagination.innerHTML = '';
+    if (elements.articlesGrid) {
+        elements.articlesGrid.innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-search"></i>
+                <h3>Tidak ada artikel ditemukan</h3>
+                <p>Coba gunakan kata kunci yang berbeda atau pilih kategori lain.</p>
+            </div>
+        `;
+    }
+    if (elements.pagination) {
+        elements.pagination.innerHTML = '';
+    }
 }
 
 function renderPagination(totalPages) {
+    if (!elements.pagination) return;
+    
     if (totalPages <= 1) {
         elements.pagination.innerHTML = '';
         return;
@@ -578,7 +656,9 @@ function openArticleModal(articleId) {
 }
 
 function closeArticleModal() {
-    elements.articleModal.classList.remove('open');
+    if (elements.articleModal) {
+        elements.articleModal.classList.remove('open');
+    }
 }
 
 // History functions
@@ -609,14 +689,20 @@ function addToSearchHistory(searchTerm) {
 
 function openHistoryModal() {
     renderHistoryList();
-    elements.historyModal.classList.add('open');
+    if (elements.historyModal) {
+        elements.historyModal.classList.add('open');
+    }
 }
 
 function closeHistoryModal() {
-    elements.historyModal.classList.remove('open');
+    if (elements.historyModal) {
+        elements.historyModal.classList.remove('open');
+    }
 }
 
 function renderHistoryList() {
+    if (!elements.historyList) return;
+    
     if (searchHistory.length === 0) {
         elements.historyList.innerHTML = `
             <div class="empty-state">
@@ -641,7 +727,9 @@ function renderHistoryList() {
 }
 
 function searchFromHistory(searchTerm) {
-    elements.searchInput.value = searchTerm;
+    if (elements.searchInput) {
+        elements.searchInput.value = searchTerm;
+    }
     currentSearchTerm = searchTerm;
     currentPage = 1;
     currentCategory = 'all';
@@ -696,13 +784,15 @@ function formatDate(dateString) {
 }
 
 function showError(message) {
-    elements.articlesGrid.innerHTML = `
-        <div class="empty-state">
-            <i class="fas fa-exclamation-triangle"></i>
-            <h3>Terjadi Kesalahan</h3>
-            <p>${message}</p>
-        </div>
-    `;
+    if (elements.articlesGrid) {
+        elements.articlesGrid.innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>Terjadi Kesalahan</h3>
+                <p>${message}</p>
+            </div>
+        `;
+    }
 }
 
 // Make functions globally available for onclick handlers
